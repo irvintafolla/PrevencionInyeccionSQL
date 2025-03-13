@@ -58,8 +58,8 @@ window.addEventListener('DOMContentLoaded', event => {
 
 document.addEventListener('DOMContentLoaded', function () {
     
-    //const API_URL = "https://prevencionsegundoessql.onrender.com";
-    const API_URL = "http://127.0.0.1:8000";
+    const API_URL = "https://prevencioninyeccionsql.onrender.com";
+    //const API_URL = "http://127.0.0.1:8000";
     let lastResult = null;
 
 
