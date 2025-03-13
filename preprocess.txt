@@ -1,0 +1,22 @@
+import os
+import pandas as pd
+
+dataset_path = 'dataset/Entrenamiento/' #ruta de los archivos de código
+
+def LoadCode():
+    data = []
+    for root, _, files in os.walk(dataset_path):
+        for file in files:
+            if file.endswith(".cs") or file.endswith(".py"): #solo lee los archivos de código
+                file_path = os.path.join(root, file)
+                with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                    code = f.read()
+                    label = 1 if "CWE" in root else 0 #por lo investigado cwe utilizado para marcar las vulnerabilidades
+                    data.append((code, label))
+
+    return pd.DataFrame(data, columns=['code', 'label'])
+
+if __name__ == '__main__':
+    df = LoadCode()
+    df.to_csv('dataset/Codigos.csv', index=False)
+    print("Dataset creado y guardado con exito!")

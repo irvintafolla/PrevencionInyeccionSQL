@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>Sistema para la detección de inyecciones SQL</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap Icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- SimpleLightbox plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/Loading.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">Inicio</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#about">Acerca del proyecto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#analisis">Analizar código</a></li>                        
+                        <li class="nav-item"><a class="nav-link" href="#descargas">Descargar códigos seguros</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end">
+                        <h1 class="text-white font-weight-bold">Prevención y mitigación de inyecciones SQL en aplicaciones Web</h1>
+                        <hr class="divider" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">                        
+                        <a class="btn btn-primary btn-xl" href="#about">Conocer más</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- About-->
+        <section class="page-section bg-primary" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="text-white mt-0">Objetivo</h2>
+                        <hr class="divider divider-light" />
+                        <p class="text-white-75 mb-4">Este proyecto tiene como objetivo prevenir y mitigar las inyecciones SQL en aplicaciones web, mediante la implementación de un analizador de código fuente que permita detectar posibles vulnerabilidades en el código de las aplicaciones.
+                        El analizador de código fuente se encarga de revisar el código de las aplicaciones web en busca de posibles vulnerabilidades, como inyecciones SQL, y proporciona los resultados obtenidos</p>
+                        <a class="btn btn-light btn-xl" href="#analisis">Empezar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- analisis-->
+        <section class="page-section" id="analisis">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">Analizar código</h2>
+                <hr class="divider" />
+                <div class="row gx-4 gx-lg-5 justify-content-center" id="analisis-container" style="display: flex;">
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
+                            <h3 class="h4 mb-2">Subir archivo</h3>
+                            <form enctype="multipart/form-data">
+                                <input type="file" id="fileInput" accept=".py, .cs" class="form-control" required>
+                                <br>
+                                <button type="button" class="btn btn-primary btn-xl" id="btn-analizar">Analizar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>                
+                <div class="row gx-4 gx-lg-5 justify-content-center" id="resultado-container" style="display: flex;">
+                    <div class="col-lg-12 col-md-12 text-center">
+                        <div class="mt-5">
+                            <h3 class="h4 mb-2">Resultados:</h3>
+                            <div id="resultado" style="align-items: center;"></div>
+                            <br>
+                            <button id="verResultadosbtn" style="display: none;" class="btn btn-primary btn-xl">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>        
+        <!-- Descargar códigos seguros-->
+        <section class="page-section bg-dark text-white" id="descargas">
+            <div class="container px-4 px-lg-5 text-center">
+                <h2 class="mb-4">Descargar ejemplos de código seguro</h2>
+                <form enctype="multipart/form-data"">
+                    <select id="Zip" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
+                        <option value="" disabled selected>Selecciona un lenguaje</option>
+                        <option value="py">Python</option>
+                        <option value="cs">C#</option>
+                    </select>                    
+                    <button class="btn btn-light btn-xl" id="btn-descargar-zip">Descargar</button>
+                </form>
+            </div>
+        </section>
+
+    
+        <!-- Modal de Carga -->
+        <div id="loading" class="loading-overlay" style="display: none;">
+            <div class="loading-content">
+                <img src="assets/img/Loading1.gif" alt="Cargando...">
+            </div>
+        </div>
+
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2025 - Irvin Tafolla 
+                <br>
+                <a href="https://github.com/irvintafolla" target="_blank" style="color: #970747;"><i class="fab fa-github"></i></a>
+            </div></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- SimpleLightbox plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+
+    </body>
+</html>
